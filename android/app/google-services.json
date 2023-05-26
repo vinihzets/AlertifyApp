@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "512229687346",
+    "firebase_url": "https://projeto-edipo-default-rtdb.firebaseio.com",
+    "project_id": "projeto-edipo",
+    "storage_bucket": "projeto-edipo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512229687346:android:07e209d29758950f3c3c2b",
+        "android_client_info": {
+          "package_name": "com.example.alertify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512229687346-cd9ls8gsm89kdb8me43ig3nlteto441d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBa6oCXZZTMt-1_H0pI4Unm9cYGPwzM5AA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "512229687346-cd9ls8gsm89kdb8me43ig3nlteto441d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
