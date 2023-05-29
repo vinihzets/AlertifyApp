@@ -6,4 +6,5 @@ import 'package:dartz/dartz.dart';
 abstract class UserRepository {
   Future<Either<Failure, List<UserEntity>>> fetchUsers();
   Future<Either<Failure, dynamic>> activate(ActivateUserParams params);
+  Future<Either<Failure, void>> deleteUser(UserEntity entity);
 }

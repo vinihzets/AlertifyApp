@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:alertifyapp/core/services/notification_service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
 
 class FirebaseMessagingServices {
   NotificationService service;
@@ -25,9 +28,12 @@ class FirebaseMessagingServices {
   _onMessage(RemoteMessage message) {
     RemoteNotification? notification = message.notification;
 
-    service.showLocalNotification(CustomNotification(
-        id: message.hashCode,
-        title: notification!.title!,
-        body: notification.body!));
+    if (notification != null) {
+      service.showLocalNotification(CustomNotification(
+          id: message.hashCode,
+          title: notification.title!,
+          body: notification.body!));
+    }
+    return;
   }
 }

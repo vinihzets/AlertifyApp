@@ -7,6 +7,9 @@ class UsersViewEmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Center(
+      child: Column(
+          children: [const Text('Nao existe nenhum usuario cadastrado')]),
+    );
   }
 }

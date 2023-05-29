@@ -44,6 +44,10 @@ class _UsersViewStableStateState extends State<UsersViewStableState> {
             return ListTile(
               leading: const Icon(Icons.person),
               title: Text(user.email),
+              subtitle: TextButton(
+                  onPressed: () => widget.bloc
+                      .dispatchEvent(UsersEventDeleteUser(user, context)),
+                  child: const Text('Apagar Usuario')),
               trailing: Column(
                 children: [
                   Switch(

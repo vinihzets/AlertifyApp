@@ -6,17 +6,18 @@ import 'package:alertifyapp/core/architecture/event.dart';
 import 'package:alertifyapp/core/architecture/usecase.dart';
 import 'package:alertifyapp/core/global/entities/user_entity.dart';
 import 'package:alertifyapp/features/users/domain/usecases/activate_user_usecase_impl.dart';
+import 'package:alertifyapp/features/users/domain/usecases/delete_user_usecase_impl.dart';
 import 'package:alertifyapp/features/users/domain/usecases/fetch_users_usecase_impl.dart';
 import 'package:alertifyapp/features/users/presentation/bloc/users_event.dart';
+import 'package:flutter/material.dart';
 
 class UsersBloc extends Bloc {
   FetchUsersUseCaseImpl fetchUsersUseCaseImpl;
   ActivateUserUseCaseImpl activateUserUseCaseImpl;
+  DeleteUserUseCaseImpl deleteUserUseCaseImpl;
   late List<UserEntity> listUser;
-  UsersBloc(
-    this.fetchUsersUseCaseImpl,
-    this.activateUserUseCaseImpl,
-  ) {
+  UsersBloc(this.fetchUsersUseCaseImpl, this.activateUserUseCaseImpl,
+      this.deleteUserUseCaseImpl) {
     listUser = [];
   }
 
@@ -26,6 +27,8 @@ class UsersBloc extends Bloc {
       _handleFetchUsers();
     } else if (event is UsersEventActivate) {
       _handleActivateUser(event.params.entity, event.params.active);
+    } else if (event is UsersEventDeleteUser) {
+      _handleDeleteUser(event.context, event.entity);
     }
   }
 
@@ -49,6 +52,19 @@ class UsersBloc extends Bloc {
       inspect(l.message);
     }, (r) {
       dispatchState(BlocStableState(data: r));
+    });
+  }
+
+  _handleDeleteUser(BuildContext context, UserEntity entity) async {
+    dispatchState(BlocLoadingState());
+    final deleteUserRequest = await deleteUserUseCaseImpl.call(entity);
+
+    deleteUserRequest.fold((l) {
+      showSnack(context, 'Erro ao tentar deletar esse usuario', Colors.red);
+    }, (r) {
+      listUser.removeWhere((user) => user.email == entity.email);
+
+      dispatchState(BlocStableState(data: listUser));
     });
   }
 }

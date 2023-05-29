@@ -1,8 +1,7 @@
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
+import * as admin from "firebase-admin";
+import * as functions from "firebase-functions";
 
-
-exports.deleteUser = functions.https.onCall(async (data: { userId: any; }, context: any) => {
+export const deleteUser = functions.https.onCall(async (data: { userId: any; }, context: any) => {
     const userId = data.userId;
 
     try {

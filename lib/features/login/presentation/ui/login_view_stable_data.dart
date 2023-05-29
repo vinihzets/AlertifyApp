@@ -46,7 +46,6 @@ class _LoginViewStableDataState extends State<LoginViewStableData> {
             const Icon(
               Icons.notification_important_outlined,
               size: 64,
-              color: Colors.white,
             ),
             const Text(
               'Alertify',
@@ -62,6 +61,8 @@ class _LoginViewStableDataState extends State<LoginViewStableData> {
               width: 260,
               child: TextField(
                 controller: passwordController,
+                obscuringCharacter: '*',
+                obscureText: true,
               ),
             ),
             const SizedBox(

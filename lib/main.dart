@@ -1,6 +1,7 @@
 import 'package:alertifyapp/core/configs/build.dart';
 import 'package:alertifyapp/core/inject/injector.dart';
 import 'package:alertifyapp/core/services/firebase_messaging_services.dart';
+import 'package:alertifyapp/core/services/notification_service.dart';
 import 'package:alertifyapp/core/utils/const_routes.dart';
 import 'package:alertifyapp/core/utils/routes_builder.dart';
 import 'package:alertifyapp/theme.dart';

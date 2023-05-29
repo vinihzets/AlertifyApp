@@ -1,11 +1,13 @@
 import 'package:alertifyapp/core/services/auth_services.dart';
 import 'package:alertifyapp/core/services/database_services.dart';
 import 'package:alertifyapp/core/services/firebase_messaging_services.dart';
+import 'package:alertifyapp/core/services/functions_services.dart';
 import 'package:alertifyapp/core/services/notification_service.dart';
 import 'package:alertifyapp/features/home/data/datasources/home_datasources.dart';
 import 'package:alertifyapp/features/home/data/datasources/remote/home_datasources_remote_impl.dart';
 import 'package:alertifyapp/features/home/data/repositories/home_repository_impl.dart';
 import 'package:alertifyapp/features/home/domain/repositories/home_repository.dart';
+import 'package:alertifyapp/features/users/domain/usecases/delete_user_usecase_impl.dart';
 import 'package:alertifyapp/features/home/domain/usecases/send_custom_notification_message_impl.dart';
 import 'package:alertifyapp/features/home/domain/usecases/sign_out_usecase_impl.dart';
 import 'package:alertifyapp/features/home/presentation/bloc/home_bloc.dart';
@@ -52,6 +54,7 @@ class Injector {
     //CORE
 
     getIt.registerLazySingleton(() => ThemeState());
+    getIt.registerLazySingleton(() => FunctionsServices());
     getIt.registerLazySingleton(() => DatabaseService());
     getIt.registerLazySingleton(() => AuthService());
     getIt.registerLazySingleton(() => ConstRoutes());
@@ -63,7 +66,7 @@ class Injector {
     getIt.registerLazySingleton<NotActiveDataSources>(
         () => NotActiveDataSourcesRemoteImpl(getIt()));
     getIt.registerLazySingleton<UserDataSources>(
-        () => UserDataSourcesRemoteImpl(getIt(), getIt()));
+        () => UserDataSourcesRemoteImpl(getIt(), getIt(), getIt()));
     getIt.registerLazySingleton<HomeDataSources>(
         () => HomeDataSourcesRemoteImpl(getIt(), getIt()));
     getIt.registerLazySingleton<RegisterDataSources>(
@@ -90,6 +93,7 @@ class Injector {
 
     //USECASES
 
+    getIt.registerLazySingleton(() => DeleteUserUseCaseImpl(getIt()));
     getIt.registerLazySingleton(() => LeaveApplicationUseCaseImpl(getIt()));
     getIt.registerLazySingleton(() => ActivateUserUseCaseImpl(getIt()));
     getIt.registerLazySingleton(() => FetchUsersUseCaseImpl(getIt()));
@@ -102,7 +106,7 @@ class Injector {
     //BLOC
 
     getIt.registerFactory(() => NotActiveBloc(getIt(), getIt()));
-    getIt.registerFactory(() => UsersBloc(getIt(), getIt()));
+    getIt.registerFactory(() => UsersBloc(getIt(), getIt(), getIt()));
     getIt.registerFactory(() => HomeBloc(getIt(), getIt(), getIt()));
     getIt.registerFactory(() => RegisterBloc(getIt(), getIt()));
     getIt.registerFactory(() => LoginBloc(getIt(), getIt()));

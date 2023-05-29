@@ -42,7 +42,6 @@ class _RegisterViewStableDataState extends State<RegisterViewStableData> {
             const Icon(
               Icons.notification_important_outlined,
               size: 64,
-              color: Colors.white,
             ),
             const Text(
               'Registre-se',
@@ -58,6 +57,8 @@ class _RegisterViewStableDataState extends State<RegisterViewStableData> {
               width: 260,
               child: TextField(
                 controller: passwordController,
+                obscuringCharacter: '*',
+                obscureText: true,
               ),
             ),
             const SizedBox(

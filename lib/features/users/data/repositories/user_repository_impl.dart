@@ -31,4 +31,15 @@ class UserRepositoryImpl implements UserRepository {
       return Left(RemoteFailure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> deleteUser(UserEntity entity) async {
+    try {
+      final deleteRequest = await dataSources.deleteUser(entity);
+
+      return Right(deleteRequest);
+    } on Exception catch (e) {
+      return Left(RemoteFailure(message: e.toString()));
+    }
+  }
 }
