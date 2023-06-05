@@ -1,6 +1,5 @@
 import 'package:alertifyapp/core/architecture/bloc_state.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter/material.dart';
 
 class HomeViewErrorState extends StatelessWidget {
   final BlocState state;
@@ -8,6 +7,6 @@ class HomeViewErrorState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Scaffold();
   }
 }

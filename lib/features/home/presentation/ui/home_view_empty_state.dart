@@ -1,4 +1,3 @@
-import 'package:alertifyapp/core/architecture/bloc_state.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewEmptyState extends StatelessWidget {
