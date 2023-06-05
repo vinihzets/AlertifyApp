@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
-
 import 'package:alertifyapp/core/architecture/bloc_state.dart';
 import 'package:alertifyapp/core/architecture/event.dart';
 import 'package:alertifyapp/core/utils/hud_mixins.dart';
@@ -21,7 +19,6 @@ abstract class Bloc with HudMixins {
 
   dispatchState(BlocState state) {
     _state.add(state);
-    inspect(state);
   }
 
   dispatchEvent(Event event) {
