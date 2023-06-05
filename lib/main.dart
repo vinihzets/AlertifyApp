@@ -1,7 +1,6 @@
 import 'package:alertifyapp/core/configs/build.dart';
 import 'package:alertifyapp/core/inject/injector.dart';
 import 'package:alertifyapp/core/services/firebase_messaging_services.dart';
-import 'package:alertifyapp/core/services/notification_service.dart';
 import 'package:alertifyapp/core/utils/const_routes.dart';
 import 'package:alertifyapp/core/utils/routes_builder.dart';
 import 'package:alertifyapp/theme.dart';
@@ -13,9 +12,6 @@ void main() async {
 
   await FirebaseInitialize.initConfigurations();
   late FirebaseMessagingServices messagingServices;
-  late ConstRoutes routes;
-
-  routes = GetIt.I.get();
   messagingServices = GetIt.I.get();
 
   await messagingServices.initialize();
@@ -47,6 +43,7 @@ class _ApplicationState extends State<Application> {
       valueListenable: theme.isDarkState,
       builder: (BuildContext context, value, child) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           theme: theme.isDarkState.value
               ? theme.themeDarkState
               : theme.themeLightState,
