@@ -38,7 +38,10 @@ class _HomeAdminViewState extends State<HomeAdminView> {
           items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.person_2_outlined), label: 'Users'),
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
           ]),
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),

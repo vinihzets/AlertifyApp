@@ -30,7 +30,6 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: theme.isDarkState.value ? Colors.grey : Colors.blue,
         title: const Text('Alertify'),
         centerTitle: true,
         actions: [
@@ -53,6 +52,13 @@ class _HomeViewState extends State<HomeView> {
               ))
         ],
       ),
+      // body:
+      // BlocScreenBuilder(stream:
+      // bloc.state,
+      // onStable: (onStable) => ,
+      //  onError: (onError) => const SizedBox.shrink(),
+      //  onLoading: (state) => const Center(child: CircularProgressIndicator(),),
+      // onEmpty: (onEmpty) => const Center()),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _buildDialog(),
         child: const Icon(Icons.add),

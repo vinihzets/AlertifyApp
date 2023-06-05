@@ -1,10 +1,6 @@
-import 'dart:developer';
-
 import 'package:alertifyapp/core/architecture/usecase.dart';
-import 'package:alertifyapp/core/global/entities/user_entity.dart';
 import 'package:alertifyapp/core/services/auth_services.dart';
 import 'package:alertifyapp/core/services/database_services.dart';
-import 'package:alertifyapp/core/services/functions_services.dart';
 import 'package:alertifyapp/features/home/data/datasources/home_datasources.dart';
 
 class HomeDataSourcesRemoteImpl implements HomeDataSources {
@@ -19,7 +15,6 @@ class HomeDataSourcesRemoteImpl implements HomeDataSources {
 
   @override
   Future sendNotification(CustomNotificationMessageParams params) async {
-    inspect(params.title);
     return databaseService.tableNotifications
         .add({'title': params.title, 'body': params.body}).then(
             (value) => databaseService.tableNotifications.doc(value.id).update({

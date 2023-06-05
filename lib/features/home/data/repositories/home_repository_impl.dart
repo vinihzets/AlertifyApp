@@ -1,6 +1,5 @@
 import 'package:alertifyapp/core/architecture/usecase.dart';
 import 'package:alertifyapp/core/failure/failure.dart';
-import 'package:alertifyapp/core/global/entities/user_entity.dart';
 import 'package:alertifyapp/features/home/data/datasources/home_datasources.dart';
 import 'package:alertifyapp/features/home/domain/repositories/home_repository.dart';
 import 'package:dartz/dartz.dart';

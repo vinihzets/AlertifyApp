@@ -2,7 +2,6 @@ import 'package:alertifyapp/core/architecture/bloc.dart';
 import 'package:alertifyapp/core/architecture/event.dart';
 import 'package:alertifyapp/core/architecture/usecase.dart';
 import 'package:alertifyapp/core/utils/const_routes.dart';
-import 'package:alertifyapp/features/users/domain/usecases/delete_user_usecase_impl.dart';
 import 'package:alertifyapp/features/home/domain/usecases/send_custom_notification_message_impl.dart';
 import 'package:alertifyapp/features/home/domain/usecases/sign_out_usecase_impl.dart';
 import 'package:alertifyapp/features/home/presentation/bloc/home_event.dart';
