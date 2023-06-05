@@ -42,6 +42,7 @@ import 'package:alertifyapp/features/users/domain/repositories/user_repository.d
 import 'package:alertifyapp/features/users/domain/usecases/activate_user_usecase_impl.dart';
 import 'package:alertifyapp/features/users/domain/usecases/fetch_users_usecase_impl.dart';
 import 'package:alertifyapp/features/users/presentation/bloc/users_bloc.dart';
+import 'package:alertifyapp/features/walkthrough/presentation/bloc/walkthrough_bloc.dart';
 import 'package:alertifyapp/theme.dart';
 import 'package:get_it/get_it.dart';
 
@@ -105,6 +106,9 @@ class Injector {
 
     //BLOC
 
+    getIt.registerFactory(() => WalkthroughBloc(
+          getIt(),
+        ));
     getIt.registerFactory(() => NotActiveBloc(getIt(), getIt()));
     getIt.registerFactory(() => UsersBloc(getIt(), getIt(), getIt()));
     getIt.registerFactory(() => HomeBloc(getIt(), getIt(), getIt()));
