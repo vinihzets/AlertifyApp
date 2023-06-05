@@ -51,15 +51,29 @@ class _LoginViewStableDataState extends State<LoginViewStableData> {
               'Alertify',
               style: TextStyle(fontSize: 24),
             ),
-            SizedBox(
-              width: 260,
-              child: TextField(
-                controller: emailController,
-              ),
+            const SizedBox(
+              height: 24,
             ),
             SizedBox(
               width: 260,
               child: TextField(
+                decoration: const InputDecoration(
+                    labelText: 'E-mail',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)))),
+                controller: emailController,
+              ),
+            ),
+            const SizedBox(
+              height: 6,
+            ),
+            SizedBox(
+              width: 260,
+              child: TextField(
+                decoration: const InputDecoration(
+                    labelText: 'Password',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)))),
                 controller: passwordController,
                 obscuringCharacter: '*',
                 obscureText: true,
@@ -72,8 +86,6 @@ class _LoginViewStableDataState extends State<LoginViewStableData> {
               onPressed: () => widget.bloc.dispatchEvent(LoginEventSignIn(
                   SignInParams(emailController.text, passwordController.text),
                   context)),
-              style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.grey)),
               child: const Text('Fazer Login'),
             ),
             TextButton(
@@ -82,7 +94,6 @@ class _LoginViewStableDataState extends State<LoginViewStableData> {
                         context, routes.register)),
                 child: const Text(
                   'Registrar-se',
-                  style: TextStyle(color: Colors.grey),
                 ))
           ]),
     );
