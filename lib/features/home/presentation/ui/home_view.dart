@@ -1,8 +1,14 @@
 import 'package:alertifyapp/features/home/presentation/bloc/home_bloc.dart';
 import 'package:alertifyapp/features/home/presentation/bloc/home_event.dart';
+import 'package:alertifyapp/features/home/presentation/ui/home_view_empty_state.dart';
+import 'package:alertifyapp/features/home/presentation/ui/home_view_error_state.dart';
+import 'package:alertifyapp/features/home/presentation/ui/home_view_loading_state.dart';
+import 'package:alertifyapp/features/home/presentation/ui/home_view_stable_state.dart';
 import 'package:alertifyapp/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+
+import '../../../../core/components/bloc_screen_builder.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -23,6 +29,8 @@ class _HomeViewState extends State<HomeView> {
     bodyController = TextEditingController();
     theme = GetIt.I.get();
     bloc = GetIt.I.get();
+
+    bloc.dispatchEvent(HomeEventGetCustomNotifications());
     super.initState();
   }
 
@@ -52,13 +60,16 @@ class _HomeViewState extends State<HomeView> {
               ))
         ],
       ),
-      // body:
-      // BlocScreenBuilder(stream:
-      // bloc.state,
-      // onStable: (onStable) => ,
-      //  onError: (onError) => const SizedBox.shrink(),
-      //  onLoading: (state) => const Center(child: CircularProgressIndicator(),),
-      // onEmpty: (onEmpty) => const Center()),
+      body: BlocScreenBuilder(
+          stream: bloc.state,
+          onStable: (onStable) => HomeViewStableState(
+                state: onStable,
+              ),
+          onError: (onError) => HomeViewErrorState(
+                state: onError,
+              ),
+          onLoading: (state) => const HomeViewLoadingState(),
+          onEmpty: (onEmpty) => const HomeViewEmptyState()),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _buildDialog(),
         child: const Icon(Icons.add),
@@ -75,20 +86,24 @@ class _HomeViewState extends State<HomeView> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text('Titulo'),
+                    const Text('Enviar Notificação'),
+                    const SizedBox(height: 12),
                     SizedBox(
-                      width: 180,
+                      width: 220,
                       child: TextField(
                         controller: titleController,
-                        decoration: const InputDecoration(hintText: 'Titulo'),
+                        decoration: const InputDecoration(labelText: 'Titulo'),
                       ),
                     ),
+                    const SizedBox(
+                      height: 6,
+                    ),
                     SizedBox(
-                      width: 180,
+                      width: 220,
                       child: TextField(
                         controller: bodyController,
                         decoration:
-                            const InputDecoration(hintText: 'Informações'),
+                            const InputDecoration(labelText: 'Informações'),
                       ),
                     ),
                     const SizedBox(
@@ -101,9 +116,6 @@ class _HomeViewState extends State<HomeView> {
                         titleController.clear();
                         bodyController.clear();
                       },
-                      style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.grey)),
                       child: const Text('Enviar'),
                     )
                   ],
