@@ -9,7 +9,7 @@ class UsersViewEmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-          children: [const Text('Nao existe nenhum usuario cadastrado')]),
+          children: const [Text('Nao existe nenhum usuario cadastrado')]),
     );
   }
 }

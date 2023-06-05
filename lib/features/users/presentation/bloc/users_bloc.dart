@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:alertifyapp/core/architecture/bloc.dart';
 import 'package:alertifyapp/core/architecture/bloc_state.dart';
 import 'package:alertifyapp/core/architecture/event.dart';
@@ -48,9 +46,7 @@ class UsersBloc extends Bloc {
   _handleActivateUser(UserEntity entity, bool activeordesactive) async {
     final active = await activateUserUseCaseImpl
         .call(ActivateUserParams(entity, activeordesactive));
-    active.fold((l) {
-      inspect(l.message);
-    }, (r) {
+    active.fold((l) {}, (r) {
       dispatchState(BlocStableState(data: r));
     });
   }

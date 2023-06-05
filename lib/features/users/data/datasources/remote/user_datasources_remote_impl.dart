@@ -38,8 +38,6 @@ class UserDataSourcesRemoteImpl implements UserDataSources {
   Future<void> deleteUser(UserEntity entity) async {
     if (authService.auth.currentUser != null) {
       try {
-        final callable = functions.service.httpsCallable('deleteUser');
-        await callable.call({'userId': entity.userId});
         await databaseService.tableUsers.doc(entity.docId).delete();
       } catch (e) {
         return;

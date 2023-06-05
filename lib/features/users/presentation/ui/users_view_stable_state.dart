@@ -32,7 +32,6 @@ class _UsersViewStableStateState extends State<UsersViewStableState> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: theme.isDarkState.value ? Colors.grey : Colors.blue,
         title: const Text('Usuarios'),
         centerTitle: true,
       ),
