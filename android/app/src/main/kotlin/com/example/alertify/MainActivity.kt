@@ -1,4 +1,4 @@
-package com.example.alertify
+package com.example.alertifyapp
 
 import io.flutter.embedding.android.FlutterActivity
 
