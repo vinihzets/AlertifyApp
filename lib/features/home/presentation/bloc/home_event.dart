@@ -22,3 +22,5 @@ class HomeEventSendNotification implements HomeEvent {
 
   HomeEventSendNotification(this.context, this.title, this.body);
 }
+
+class HomeEventGetCustomNotifications implements HomeEvent {}

@@ -7,6 +7,7 @@ import 'package:alertifyapp/features/home/data/datasources/home_datasources.dart
 import 'package:alertifyapp/features/home/data/datasources/remote/home_datasources_remote_impl.dart';
 import 'package:alertifyapp/features/home/data/repositories/home_repository_impl.dart';
 import 'package:alertifyapp/features/home/domain/repositories/home_repository.dart';
+import 'package:alertifyapp/features/home/domain/usecases/get_custom_notifications_usecase_imp.dart';
 import 'package:alertifyapp/features/users/domain/usecases/delete_user_usecase_impl.dart';
 import 'package:alertifyapp/features/home/domain/usecases/send_custom_notification_message_impl.dart';
 import 'package:alertifyapp/features/home/domain/usecases/sign_out_usecase_impl.dart';
@@ -94,6 +95,8 @@ class Injector {
 
     //USECASES
 
+    getIt.registerLazySingleton(
+        () => GetCustomNotificationsUseCaseImpl(getIt()));
     getIt.registerLazySingleton(() => DeleteUserUseCaseImpl(getIt()));
     getIt.registerLazySingleton(() => LeaveApplicationUseCaseImpl(getIt()));
     getIt.registerLazySingleton(() => ActivateUserUseCaseImpl(getIt()));
@@ -111,7 +114,7 @@ class Injector {
         ));
     getIt.registerFactory(() => NotActiveBloc(getIt(), getIt()));
     getIt.registerFactory(() => UsersBloc(getIt(), getIt(), getIt()));
-    getIt.registerFactory(() => HomeBloc(getIt(), getIt(), getIt()));
+    getIt.registerFactory(() => HomeBloc(getIt(), getIt(), getIt(), getIt()));
     getIt.registerFactory(() => RegisterBloc(getIt(), getIt()));
     getIt.registerFactory(() => LoginBloc(getIt(), getIt()));
     getIt.registerFactory(() => SplashBloc(getIt(), getIt(), getIt()));
