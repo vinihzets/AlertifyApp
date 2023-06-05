@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:alertifyapp/core/services/notification_service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
 
 class FirebaseMessagingServices {
   NotificationService service;

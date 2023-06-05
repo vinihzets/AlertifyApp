@@ -24,22 +24,19 @@ class NotificationService {
 
   NotificationService() {
     localNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    androidDetails = AndroidNotificationDetails(
+    androidDetails = const AndroidNotificationDetails(
       'channelId',
       'channelName',
       channelDescription: 'channelDescription',
     );
-    // iosDetails = IOSNotificationDetails();
     initialize();
   }
 
   Future<void> initialize() async {
     const initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
-    // const initializationSettingsIOS = IOSInitializationSettings();
-    final initializationSettings = InitializationSettings(
+    const initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid,
-      // iOS: initializationSettingsIOS,
     );
     await localNotificationsPlugin.initialize(initializationSettings);
   }

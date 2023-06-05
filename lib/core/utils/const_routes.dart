@@ -5,4 +5,5 @@ class ConstRoutes {
   final String login = '/login';
   final String notActive = '/notactive';
   final String homeAdmin = '/homeAdmin';
+  final String walkThroughView = '/walkthrough';
 }

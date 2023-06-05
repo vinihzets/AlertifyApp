@@ -5,6 +5,7 @@ import 'package:alertifyapp/features/login/presentation/ui/login_view.dart';
 import 'package:alertifyapp/features/not_active/presentation/ui/not_active_view.dart';
 import 'package:alertifyapp/features/register/presentation/ui/register_view.dart';
 import 'package:alertifyapp/features/splash/presentation/ui/splash_view.dart';
+import 'package:alertifyapp/features/walkthrough/presentation/ui/walkthrough_view.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
@@ -16,6 +17,7 @@ class Routes {
       routes.home: (_) => const HomeView(),
       routes.notActive: (_) => const NotActiveView(),
       routes.homeAdmin: (_) => const HomeAdminView(),
+      routes.walkThroughView: (_) => const WalkthroughView()
     };
   }
 }
