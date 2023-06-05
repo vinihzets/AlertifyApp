@@ -23,22 +23,30 @@ class _NotActiveViewState extends State<NotActiveView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text(
-              'Voce não possui acesso a aplicação , entre em contato com o administrador!',
-              style: TextStyle(fontSize: 26),
-            ),
-            ElevatedButton(
-              onPressed: () =>
-                  bloc.dispatchEvent(NotActiveEventSignOut(context)),
-              style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.grey)),
-              child: const Text('Sair'),
-            )
-          ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.lock,
+                size: 100,
+              ),
+              const Text(
+                'Você ainda não possui acesso, aguarde um administrador',
+                style: TextStyle(fontSize: 26),
+              ),
+              const SizedBox(
+                height: 80,
+              ),
+              ElevatedButton(
+                onPressed: () =>
+                    bloc.dispatchEvent(NotActiveEventSignOut(context)),
+                child: const Text('Sair'),
+              )
+            ],
+          ),
         ),
       ),
     );

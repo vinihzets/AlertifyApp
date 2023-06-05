@@ -44,18 +44,32 @@ class _RegisterViewStableDataState extends State<RegisterViewStableData> {
               size: 64,
             ),
             const Text(
-              'Registre-se',
+              'Alertify',
               style: TextStyle(fontSize: 24),
+            ),
+            const SizedBox(
+              height: 24,
             ),
             SizedBox(
               width: 260,
               child: TextField(
+                decoration: const InputDecoration(
+                    labelText: 'E-mail',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)))),
                 controller: emailController,
               ),
             ),
+            const SizedBox(
+              height: 6,
+            ),
             SizedBox(
               width: 260,
               child: TextField(
+                decoration: const InputDecoration(
+                    labelText: 'Password',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)))),
                 controller: passwordController,
                 obscuringCharacter: '*',
                 obscureText: true,
@@ -68,16 +82,13 @@ class _RegisterViewStableDataState extends State<RegisterViewStableData> {
               onPressed: () => widget.bloc.dispatchEvent(RegisterEventSignUp(
                   RegisterParams(emailController.text, passwordController.text),
                   context)),
-              style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.grey)),
-              child: const Text('Registrar-se'),
+              child: const Text('Cadastrar-se'),
             ),
             TextButton(
                 onPressed: () => widget.bloc
                     .dispatchEvent(RegisterEventNavigatePop(context)),
                 child: const Text(
                   'Login',
-                  style: TextStyle(color: Colors.grey),
                 ))
           ]),
     );
