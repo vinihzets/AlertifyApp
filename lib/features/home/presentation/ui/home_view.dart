@@ -19,19 +19,31 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   late HomeBloc bloc;
+  late PageController pageController;
   late TextEditingController titleController;
   late TextEditingController bodyController;
   late ThemeState theme;
+  int _page = 0;
 
   @override
   void initState() {
     titleController = TextEditingController();
+    pageController = PageController();
     bodyController = TextEditingController();
     theme = GetIt.I.get();
     bloc = GetIt.I.get();
 
     bloc.dispatchEvent(HomeEventGetCustomNotifications());
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    pageController.dispose();
+    bodyController.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -53,7 +65,9 @@ class _HomeViewState extends State<HomeView> {
             },
           ),
           TextButton(
-              onPressed: () => bloc.dispatchEvent(HomeEventSignOut(context)),
+              onPressed: () {
+                bloc.dispatchEvent(HomeEventSignOut(context));
+              },
               child: const Text(
                 'Sair',
                 style: TextStyle(color: Colors.white),
@@ -113,6 +127,9 @@ class _HomeViewState extends State<HomeView> {
                       height: 6,
                     ),
                     ElevatedButton(
+                      style: const ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.white)),
                       onPressed: () {
                         if (titleController.text.isNotEmpty &&
                             bodyController.text.isNotEmpty) {
@@ -122,7 +139,10 @@ class _HomeViewState extends State<HomeView> {
                           bodyController.clear();
                         }
                       },
-                      child: const Text('Enviar'),
+                      child: const Text(
+                        'Enviar',
+                        style: TextStyle(color: Colors.black),
+                      ),
                     )
                   ],
                 ),

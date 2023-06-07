@@ -1,6 +1,7 @@
 import 'package:alertifyapp/core/utils/const_routes.dart';
 import 'package:alertifyapp/features/home/presentation/ui/home_view.dart';
 import 'package:alertifyapp/features/home_admin/presentation/ui/home_admin_view.dart';
+import 'package:alertifyapp/features/home_users/presentation/ui/home_users_view.dart';
 import 'package:alertifyapp/features/login/presentation/ui/login_view.dart';
 import 'package:alertifyapp/features/not_active/presentation/ui/not_active_view.dart';
 import 'package:alertifyapp/features/register/presentation/ui/register_view.dart';
@@ -17,7 +18,8 @@ class Routes {
       routes.home: (_) => const HomeView(),
       routes.notActive: (_) => const NotActiveView(),
       routes.homeAdmin: (_) => const HomeAdminView(),
-      routes.walkThroughView: (_) => const WalkthroughView()
+      routes.walkThroughView: (_) => const WalkthroughView(),
+      routes.homeUsers: (_) => const HomeUsersView(),
     };
   }
 }

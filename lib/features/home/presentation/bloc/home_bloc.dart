@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:alertifyapp/core/architecture/bloc.dart';
 import 'package:alertifyapp/core/architecture/event.dart';
 import 'package:alertifyapp/core/architecture/usecase.dart';
@@ -70,6 +72,7 @@ class HomeBloc extends Bloc {
 
     notifications.fold((l) => dispatchState(BlocErrorState(error: l.message)),
         (r) {
+      inspect(r);
       if (r.isEmpty) {
         dispatchState(BlocEmptyState());
       } else {

@@ -1,21 +1,27 @@
 import 'package:alertifyapp/features/home/presentation/ui/home_view.dart';
+import 'package:alertifyapp/features/settings/presentation/ui/settings_view.dart';
 import 'package:alertifyapp/features/users/presentation/ui/users_view.dart';
+import 'package:alertifyapp/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
-class HomeAdminView extends StatefulWidget {
-  const HomeAdminView({super.key});
+class HomeUsersView extends StatefulWidget {
+  const HomeUsersView({super.key});
 
   @override
-  State<HomeAdminView> createState() => _HomeAdminViewState();
+  State<HomeUsersView> createState() => _HomeUsersViewState();
 }
 
-class _HomeAdminViewState extends State<HomeAdminView> {
+class _HomeUsersViewState extends State<HomeUsersView> {
   late PageController _pageController;
+  late ThemeState theme;
   int _page = 0;
 
   @override
   void initState() {
     _pageController = PageController();
+    theme = GetIt.I.get();
+
     super.initState();
   }
 
@@ -36,11 +42,10 @@ class _HomeAdminViewState extends State<HomeAdminView> {
                 duration: const Duration(seconds: 1), curve: Curves.ease);
           },
           items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.person_2_outlined), label: 'Users'),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
+              icon: Icon(Icons.settings),
+              label: 'Permissions',
             ),
           ]),
       body: PageView(
@@ -52,8 +57,8 @@ class _HomeAdminViewState extends State<HomeAdminView> {
           });
         },
         children: const [
-          UsersView(),
           HomeView(),
+          SettingsView(),
         ],
       ),
     );
