@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:alertifyapp/core/services/notification_service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
@@ -31,6 +33,5 @@ class FirebaseMessagingServices {
           title: notification.title!,
           body: notification.body!));
     }
-    return;
   }
 }

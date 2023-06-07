@@ -51,6 +51,7 @@ class HomeBloc extends Bloc {
 
   _handleSendCustomNotification(
       BuildContext context, String title, String body) async {
+    dispatchState(BlocLoadingState());
     sendCustomNotificationMessage
         .call(CustomNotificationMessageParams(title, body))
         .then((value) {

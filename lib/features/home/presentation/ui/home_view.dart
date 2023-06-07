@@ -70,14 +70,17 @@ class _HomeViewState extends State<HomeView> {
               ),
           onLoading: (state) => const HomeViewLoadingState(),
           onEmpty: (onEmpty) => const HomeViewEmptyState()),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _buildDialog(),
-        child: const Icon(Icons.add),
+        label: const Text('Nova Notificação'),
+        icon: const Icon(Icons.add),
       ),
     );
   }
 
   _buildDialog() {
+    bool isNull = false;
+
     return showDialog(
         builder: (context) => Dialog(
               child: Padding(
@@ -111,10 +114,13 @@ class _HomeViewState extends State<HomeView> {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        bloc.dispatchEvent(HomeEventSendNotification(context,
-                            titleController.text, bodyController.text));
-                        titleController.clear();
-                        bodyController.clear();
+                        if (titleController.text.isNotEmpty &&
+                            bodyController.text.isNotEmpty) {
+                          bloc.dispatchEvent(HomeEventSendNotification(context,
+                              titleController.text, bodyController.text));
+                          titleController.clear();
+                          bodyController.clear();
+                        }
                       },
                       child: const Text('Enviar'),
                     )
