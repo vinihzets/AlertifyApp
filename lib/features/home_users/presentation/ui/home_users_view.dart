@@ -1,6 +1,4 @@
 import 'package:alertifyapp/features/home/presentation/ui/home_view.dart';
-import 'package:alertifyapp/features/settings/presentation/ui/settings_view.dart';
-import 'package:alertifyapp/features/users/presentation/ui/users_view.dart';
 import 'package:alertifyapp/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -56,10 +54,7 @@ class _HomeUsersViewState extends State<HomeUsersView> {
             _page = p;
           });
         },
-        children: const [
-          HomeView(),
-          SettingsView(),
-        ],
+        children: const [HomeView(), Scaffold()],
       ),
     );
   }

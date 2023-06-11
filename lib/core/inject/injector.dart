@@ -76,7 +76,7 @@ class Injector {
     getIt.registerLazySingleton<LoginDataSources>(
         () => LoginDataSourcesRemoteImpl(getIt(), getIt(), getIt(), getIt()));
     getIt.registerLazySingleton<SplashDataSources>(
-        () => SplashDataSourcesRemoteImpl(getIt(), getIt(), getIt()));
+        () => SplashDataSourcesRemoteImpl(getIt(), getIt(), getIt(), getIt()));
 
     //REPOSITORIES
 

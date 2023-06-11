@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:alertifyapp/core/architecture/usecase.dart';
 import 'package:alertifyapp/core/services/auth_services.dart';
 import 'package:alertifyapp/core/services/database_services.dart';
@@ -19,7 +21,6 @@ class LoginDataSourcesRemoteImpl implements LoginDataSources {
         email: params.email, password: params.password);
 
     if (loginRequest.user != null) {
-      final deviceToken = await service.getDeviceFirebaseToken();
       final tableUsers = await databaseService.tableUsers.get();
 
       final listUsers = tableUsers.docs
@@ -29,7 +30,10 @@ class LoginDataSourcesRemoteImpl implements LoginDataSources {
 
       final user = listUsers.first;
 
-      await databaseService.tableUsers.doc(user.docId).update({
+      final deviceToken = await service.getDeviceFirebaseToken();
+      inspect(deviceToken);
+
+      databaseService.tableUsers.doc(user.docId).update({
         'fcmToken': deviceToken,
       });
 

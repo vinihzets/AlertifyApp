@@ -23,7 +23,6 @@ class _HomeViewState extends State<HomeView> {
   late TextEditingController titleController;
   late TextEditingController bodyController;
   late ThemeState theme;
-  int _page = 0;
 
   @override
   void initState() {
@@ -93,8 +92,6 @@ class _HomeViewState extends State<HomeView> {
   }
 
   _buildDialog() {
-    bool isNull = false;
-
     return showDialog(
         builder: (context) => Dialog(
               child: Padding(

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -36,8 +38,8 @@ class NotificationService {
     const initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
     const initializationSettings = InitializationSettings(
-      android: initializationSettingsAndroid,
-    );
+        android: initializationSettingsAndroid,
+        iOS: DarwinInitializationSettings());
     await localNotificationsPlugin.initialize(initializationSettings);
   }
 
@@ -49,11 +51,13 @@ class NotificationService {
       icon: '@mipmap/ic_launcher',
       largeIcon: DrawableResourceAndroidBitmap('@mipmap/ic_launcher'),
     );
-    // final iOSPlatformChannelSpecifics = IOSNotificationDetails();
     const platformChannelSpecifics = NotificationDetails(
       android: androidPlatformChannelSpecifics,
-      // iOS: iOSPlatformChannelSpecifics,
     );
+
+    if (Platform.isIOS) {
+      return;
+    }
 
     await localNotificationsPlugin.show(
       notification.id,
@@ -62,19 +66,5 @@ class NotificationService {
       platformChannelSpecifics,
       payload: notification.payload,
     );
-  }
-
-  void configureFirebaseMessaging() {
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      RemoteNotification? notification = message.notification;
-      if (notification != null) {
-        CustomNotification customNotification = CustomNotification(
-          id: message.hashCode,
-          title: notification.title ?? '',
-          body: notification.body ?? '',
-        );
-        showLocalNotification(customNotification);
-      }
-    });
   }
 }

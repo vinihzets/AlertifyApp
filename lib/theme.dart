@@ -10,11 +10,6 @@ class ThemeState {
     textButtonTheme: const TextButtonThemeData(
         style: ButtonStyle(
             foregroundColor: MaterialStatePropertyAll(Colors.black))),
-    // iconTheme: const IconThemeData(color: Colors.black),
-    // appBarTheme:
-    // const AppBarTheme(backgroundColor: Color.fromARGB(255, 209, 192, 42)),
-    // floatingActionButtonTheme: const FloatingActionButtonThemeData(
-    // backgroundColor: Color.fromARGB(255, 189, 171, 16)),
     brightness: Brightness.light,
   );
 

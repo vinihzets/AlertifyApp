@@ -17,12 +17,15 @@ class HomeDataSourcesRemoteImpl implements HomeDataSources {
 
   @override
   Future sendNotification(CustomNotificationMessageParams params) async {
-    await databaseService.tableNotifications
-        .add({'title': params.title, 'body': params.body}).then((value) =>
-            databaseService.tableNotifications.doc(value.id).update({
-              'notificationId': value.id,
-              'senderId': auth.auth.currentUser!.uid
-            }));
+    final doc = databaseService.tableNotifications.doc();
+
+    await doc.set({
+      'title': params.title,
+      'body': params.body,
+      'notificationId': doc.id,
+      'senderId': auth.auth.currentUser!.uid
+    });
+
     final notifications = await databaseService.tableNotifications.get();
 
     final listNotifications = notifications.docs

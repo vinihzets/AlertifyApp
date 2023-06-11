@@ -61,5 +61,7 @@ const sendNotificationToUsers = async (title: string, body: string, users: Array
         tokens: validFcmTokens,
     };
 
+    console.log(message);
+
     return await admin.messaging().sendMulticast(message);
 }

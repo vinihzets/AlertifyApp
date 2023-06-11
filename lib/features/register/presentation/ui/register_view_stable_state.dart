@@ -44,7 +44,7 @@ class _RegisterViewStableDataState extends State<RegisterViewStableData> {
               size: 64,
             ),
             const Text(
-              'Alertify',
+              'Cadastro',
               style: TextStyle(fontSize: 24),
             ),
             const SizedBox(
