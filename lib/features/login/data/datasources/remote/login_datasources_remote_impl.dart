@@ -31,8 +31,6 @@ class LoginDataSourcesRemoteImpl implements LoginDataSources {
       final user = listUsers.first;
 
       final deviceToken = await service.getDeviceFirebaseToken();
-      inspect(deviceToken);
-
       databaseService.tableUsers.doc(user.docId).update({
         'fcmToken': deviceToken,
       });
@@ -40,7 +38,7 @@ class LoginDataSourcesRemoteImpl implements LoginDataSources {
       if (user.isAdmin) {
         return routes.homeAdmin;
       } else if (user.active) {
-        return routes.home;
+        return routes.homeUsers;
       }
     }
 

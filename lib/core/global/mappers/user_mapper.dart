@@ -4,6 +4,7 @@ class UserMapper extends UserEntity {
   UserMapper(
     super.active,
     super.isAdmin,
+    super.name,
     super.docId,
     super.email,
     super.fcmToken,
@@ -14,6 +15,7 @@ class UserMapper extends UserEntity {
     return UserMapper(
       map['active'],
       map['isAdmin'],
+      map['name'],
       map['docId'],
       map['email'],
       map['fcmToken'],

@@ -36,7 +36,7 @@ class SplashDataSourcesRemoteImpl implements SplashDataSources {
       if (user.isAdmin) {
         return routes.homeAdmin;
       }
-      return routes.home;
+      return routes.homeUsers;
     }
 
     return routes.notActive;

@@ -8,7 +8,14 @@ import 'package:alertifyapp/features/home/data/datasources/remote/home_datasourc
 import 'package:alertifyapp/features/home/data/repositories/home_repository_impl.dart';
 import 'package:alertifyapp/features/home/domain/repositories/home_repository.dart';
 import 'package:alertifyapp/features/home/domain/usecases/get_custom_notifications_usecase_imp.dart';
-import 'package:alertifyapp/features/users/domain/usecases/delete_user_usecase_impl.dart';
+import 'package:alertifyapp/features/profile/data/datasources/profile_datasources.dart';
+import 'package:alertifyapp/features/profile/data/datasources/remote/profile_datasources_remote_impl.dart';
+import 'package:alertifyapp/features/profile/data/repositories/profile_repository_impl.dart';
+import 'package:alertifyapp/features/profile/domain/repositories/profile_repository.dart';
+import 'package:alertifyapp/features/profile/domain/usecases/delete_user_usecase_impl.dart';
+import 'package:alertifyapp/features/profile/domain/usecases/fetch_user_usecase_impl.dart';
+import 'package:alertifyapp/features/profile/presentation/bloc/profile_bloc.dart';
+import 'package:alertifyapp/features/users/domain/usecases/delete_users_usecase_impl.dart';
 import 'package:alertifyapp/features/home/domain/usecases/send_custom_notification_message_impl.dart';
 import 'package:alertifyapp/features/home/domain/usecases/sign_out_usecase_impl.dart';
 import 'package:alertifyapp/features/home/presentation/bloc/home_bloc.dart';
@@ -65,6 +72,8 @@ class Injector {
 
     //DATASOURCES
 
+    getIt.registerLazySingleton<ProfileDataSources>(
+        () => ProfileDataSourcesRemoteImpl(getIt(), getIt()));
     getIt.registerLazySingleton<NotActiveDataSources>(
         () => NotActiveDataSourcesRemoteImpl(getIt()));
     getIt.registerLazySingleton<UserDataSources>(
@@ -80,6 +89,9 @@ class Injector {
 
     //REPOSITORIES
 
+    getIt.registerLazySingleton<ProfileRepository>(
+        () => ProfileRepositoryImpl(getIt()));
+
     getIt.registerLazySingleton<NotActiveRepository>(
         () => NotActiveRepositoryImpl(getIt()));
     getIt.registerLazySingleton<UserRepository>(
@@ -94,10 +106,12 @@ class Injector {
         () => SplashRepositoryImpl(getIt()));
 
     //USECASES
+    getIt.registerLazySingleton(() => DeleteUserUseCaseImpl(getIt()));
 
+    getIt.registerLazySingleton(() => FetchUserUseCaseImpl(getIt()));
     getIt.registerLazySingleton(
         () => GetCustomNotificationsUseCaseImpl(getIt()));
-    getIt.registerLazySingleton(() => DeleteUserUseCaseImpl(getIt()));
+    getIt.registerLazySingleton(() => DeleteUsersUseCaseImpl(getIt()));
     getIt.registerLazySingleton(() => LeaveApplicationUseCaseImpl(getIt()));
     getIt.registerLazySingleton(() => ActivateUserUseCaseImpl(getIt()));
     getIt.registerLazySingleton(() => FetchUsersUseCaseImpl(getIt()));
@@ -109,6 +123,7 @@ class Injector {
 
     //BLOC
 
+    getIt.registerFactory(() => ProfileBloc(getIt(), getIt(), getIt()));
     getIt.registerFactory(() => WalkthroughBloc(
           getIt(),
         ));

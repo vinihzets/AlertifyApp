@@ -4,7 +4,7 @@ import 'package:alertifyapp/core/architecture/event.dart';
 import 'package:alertifyapp/core/architecture/usecase.dart';
 import 'package:alertifyapp/core/global/entities/user_entity.dart';
 import 'package:alertifyapp/features/users/domain/usecases/activate_user_usecase_impl.dart';
-import 'package:alertifyapp/features/users/domain/usecases/delete_user_usecase_impl.dart';
+import 'package:alertifyapp/features/users/domain/usecases/delete_users_usecase_impl.dart';
 import 'package:alertifyapp/features/users/domain/usecases/fetch_users_usecase_impl.dart';
 import 'package:alertifyapp/features/users/presentation/bloc/users_event.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 class UsersBloc extends Bloc {
   FetchUsersUseCaseImpl fetchUsersUseCaseImpl;
   ActivateUserUseCaseImpl activateUserUseCaseImpl;
-  DeleteUserUseCaseImpl deleteUserUseCaseImpl;
+  DeleteUsersUseCaseImpl deleteUserUseCaseImpl;
   late List<UserEntity> listUser;
   UsersBloc(this.fetchUsersUseCaseImpl, this.activateUserUseCaseImpl,
       this.deleteUserUseCaseImpl) {

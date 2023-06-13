@@ -7,4 +7,5 @@ class ConstRoutes {
   final String homeAdmin = '/homeAdmin';
   final String walkThroughView = '/walkthrough';
   final String homeUsers = '/homeUsers';
+  final String profileView = '/profile';
 }

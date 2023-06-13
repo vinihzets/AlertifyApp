@@ -72,7 +72,6 @@ class HomeBloc extends Bloc {
 
     notifications.fold((l) => dispatchState(BlocErrorState(error: l.message)),
         (r) {
-      inspect(r);
       if (r.isEmpty) {
         dispatchState(BlocEmptyState());
       } else {

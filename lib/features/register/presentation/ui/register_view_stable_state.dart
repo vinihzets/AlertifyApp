@@ -15,9 +15,11 @@ class RegisterViewStableData extends StatefulWidget {
 class _RegisterViewStableDataState extends State<RegisterViewStableData> {
   late TextEditingController emailController;
   late TextEditingController passwordController;
+  late TextEditingController nameController;
 
   @override
   void initState() {
+    nameController = TextEditingController();
     emailController = TextEditingController();
     passwordController = TextEditingController();
 
@@ -28,6 +30,7 @@ class _RegisterViewStableDataState extends State<RegisterViewStableData> {
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+    nameController.dispose();
 
     super.dispose();
   }
@@ -54,6 +57,19 @@ class _RegisterViewStableDataState extends State<RegisterViewStableData> {
               width: 260,
               child: TextField(
                 decoration: const InputDecoration(
+                    labelText: 'Apelido/Nome',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)))),
+                controller: nameController,
+              ),
+            ),
+            const SizedBox(
+              height: 3,
+            ),
+            SizedBox(
+              width: 260,
+              child: TextField(
+                decoration: const InputDecoration(
                     labelText: 'E-mail',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20)))),
@@ -61,7 +77,7 @@ class _RegisterViewStableDataState extends State<RegisterViewStableData> {
               ),
             ),
             const SizedBox(
-              height: 6,
+              height: 3,
             ),
             SizedBox(
               width: 260,
@@ -80,7 +96,8 @@ class _RegisterViewStableDataState extends State<RegisterViewStableData> {
             ),
             ElevatedButton(
               onPressed: () => widget.bloc.dispatchEvent(RegisterEventSignUp(
-                  RegisterParams(emailController.text, passwordController.text),
+                  RegisterParams(emailController.text, passwordController.text,
+                      nameController.text),
                   context)),
               child: const Text('Cadastrar-se'),
             ),

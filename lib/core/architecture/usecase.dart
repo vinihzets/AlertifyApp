@@ -17,8 +17,9 @@ class SignInParams {
 class RegisterParams {
   String email;
   String password;
+  String name;
 
-  RegisterParams(this.email, this.password);
+  RegisterParams(this.email, this.password, this.name);
 }
 
 class NoParams {}

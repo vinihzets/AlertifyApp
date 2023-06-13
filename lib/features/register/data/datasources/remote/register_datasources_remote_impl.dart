@@ -16,7 +16,7 @@ class RegisterDataSourcesRemoteImpl implements RegisterDataSources {
     final signUpRequest = await auth.auth.createUserWithEmailAndPassword(
         email: params.email, password: params.password);
 
-    final mapper = RegisterMapper(params.email, false);
+    final mapper = RegisterMapper(params.email, false, params.name);
 
     await databaseService.tableUsers
         .add(mapper.toMap())
