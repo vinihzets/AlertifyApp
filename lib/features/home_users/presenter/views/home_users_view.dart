@@ -39,7 +39,7 @@ class _HomeUserViewState extends State<HomeUserView> {
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(
               icon: Icon(Icons.person_2_outlined),
-              label: 'Profile',
+              label: 'Perfil',
             ),
           ]),
       body: PageView(

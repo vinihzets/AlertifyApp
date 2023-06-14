@@ -2,13 +2,18 @@ import 'package:alertifyapp/core/architecture/bloc_state.dart';
 import 'package:alertifyapp/core/global/entities/user_entity.dart';
 import 'package:alertifyapp/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:alertifyapp/features/profile/presentation/bloc/profile_event.dart';
+import 'package:alertifyapp/theme.dart';
 import 'package:flutter/material.dart';
 
 class ProfileViewStableState extends StatefulWidget {
   final BlocState state;
   final ProfileBloc bloc;
+  final ThemeState themeState;
   const ProfileViewStableState(
-      {required this.state, required this.bloc, super.key});
+      {required this.state,
+      required this.bloc,
+      required this.themeState,
+      super.key});
 
   @override
   State<ProfileViewStableState> createState() => _ProfileViewStableStateState();
@@ -21,7 +26,9 @@ class _ProfileViewStableStateState extends State<ProfileViewStableState> {
 
     return SafeArea(
       child: Container(
-        color: Colors.white,
+        color: widget.themeState.isDarkState.value
+            ? Colors.grey[850]
+            : Colors.white,
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -56,7 +63,7 @@ class _ProfileViewStableStateState extends State<ProfileViewStableState> {
                 widget.bloc
                     .dispatchEvent(ProfileEventDeleteUser(context, user));
               },
-              child: const Text('Apagar Usuario'),
+              child: const Text('Apagar Conta'),
             ),
           ],
         ),

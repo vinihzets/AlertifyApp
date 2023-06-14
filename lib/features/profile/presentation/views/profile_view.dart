@@ -5,6 +5,7 @@ import 'package:alertifyapp/features/profile/presentation/views/profile_view_emp
 import 'package:alertifyapp/features/profile/presentation/views/profile_view_error_state.dart';
 import 'package:alertifyapp/features/profile/presentation/views/profile_view_loading_state.dart';
 import 'package:alertifyapp/features/profile/presentation/views/profile_view_stable_state.dart';
+import 'package:alertifyapp/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -17,9 +18,11 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView> {
   late ProfileBloc bloc;
+  late ThemeState themeState;
   @override
   void initState() {
     bloc = GetIt.I.get();
+    themeState = GetIt.I.get();
     bloc.dispatchEvent(ProfileEventGetUser());
 
     super.initState();
@@ -32,6 +35,7 @@ class _ProfileViewState extends State<ProfileView> {
         onStable: (onStable) => ProfileViewStableState(
               state: onStable,
               bloc: bloc,
+              themeState: themeState,
             ),
         onError: (onError) => ProfileViewErrorState(),
         onLoading: (onLoading) => ProfileViewLoadingState(),
