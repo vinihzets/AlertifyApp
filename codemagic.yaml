@@ -1,7 +1,12 @@
 workflows:
   my-workflow:
     scripts:
-      - name: Build ipa for distribution
+      - name: iOS Build
+      environment:
+        vars:
+          FLUTTER_CHANNEL: stable
+          XCODE_WORKSPACE: com.example.alertifyapp
+          XCODE_SCHEME: com.example.alertifyapp
         script: xcode-project build-ipa \
                     --workspace "${XCODE_WORKSPACE?}" \
                     --scheme "${XCODE_SCHEME?}"
