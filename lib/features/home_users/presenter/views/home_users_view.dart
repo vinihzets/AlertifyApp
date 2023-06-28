@@ -50,10 +50,7 @@ class _HomeUserViewState extends State<HomeUserView> {
             _page = p;
           });
         },
-        children: const [
-          HomeView(),
-          ProfileView(),
-        ],
+        children: const [HomeView(), ProfileView()],
       ),
     );
   }
