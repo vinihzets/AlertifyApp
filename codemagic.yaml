@@ -1,15 +1,38 @@
 workflows:
   my-workflow:
+    environment:
+      vars:
+        PROVISIONING_PROFILE: |
+          $(cat ~/Desktop/configsAPP/profile.mobileprovision | base64)
+        CERTIFICATE: |
+          $(cat ~/Desktop/configsAPP/certificate.p12 | base64)
+        CERTIFICATE_PASSWORD: <vnSkPe0t>
+        XCODE_WORKSPACE: Runner.xcworkspace
+        XCODE_SCHEME: Runner
     scripts:
-      - name: iOS Build
-        environment:
-          vars:
-            FLUTTER_CHANNEL: stable
-            XCODE_WORKSPACE: Runner.xcworkspace
-            XCODE_SCHEME: Runner
+      - name: Add provisioning profiles
         script: |
-          xcode-project build-ipa \
-            --workspace "${XCODE_WORKSPACE?}" \
-            --scheme "${XCODE_SCHEME?}"
+          set -e # exit on first failed command
+
+          PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
+          mkdir -p "$PROFILES_HOME"
+          echo ${PROVISIONING_PROFILE?} | base64 --decode > "$PROFILES_HOME/$(uuidgen).mobileprovision"
+      - name: Add signing certificate
+        script: |
+          set -e # exit on first failed command
+
+          echo ${CERTIFICATE?} | base64 --decode > /tmp/certificate.p12
+          keychain initialize
+          keychain add-certificates \
+              --certificate /tmp/certificate.p12 \
+              --certificate-password ${CERTIFICATE_PASSWORD?}
+      - name: Increment build number
+        script: agvtool new-version -all $BUILD_NUMBER
+      - name: Set up code signing settings on Xcode project
+        script: xcode-project use-profiles
+      - name: Build ipa for distribution
+        script: xcode-project build-ipa \
+                    --workspace "${XCODE_WORKSPACE?}" \
+                    --scheme "${XCODE_SCHEME?}"
     artifacts:
       - build/ios/ipa/*.ipa
