@@ -3,9 +3,9 @@ workflows:
     environment:
       vars:
         PROVISIONING_PROFILE: |
-          $(cat ~/Desktop/configsAPP/profile.mobileprovision | base64)
+          $(cat configsapp/profile.mobileprovision | base64)
         CERTIFICATE: |
-          $(cat ~/Desktop/configsAPP/certificate.p12 | base64)
+          $(cat configsapp/certificate.p12 | base64)
         CERTIFICATE_PASSWORD: <RP0vD9Nu>
         XCODE_WORKSPACE: Runner.xcworkspace
         XCODE_SCHEME: Runner
