@@ -6,7 +6,7 @@ workflows:
           $(cat ~/Desktop/configsAPP/profile.mobileprovision | base64)
         CERTIFICATE: |
           $(cat ~/Desktop/configsAPP/certificate.p12 | base64)
-        CERTIFICATE_PASSWORD: <vnSkPe0t>
+        CERTIFICATE_PASSWORD: <RP0vD9Nu>
         XCODE_WORKSPACE: Runner.xcworkspace
         XCODE_SCHEME: Runner
     scripts:
