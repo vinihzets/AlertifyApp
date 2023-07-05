@@ -38,4 +38,17 @@ class _HomeViewStableStateState extends State<HomeViewStableState> {
       },
     );
   }
+
+  // Future<void> changeAppIcon(String iconName) async {
+  //   try {
+  //     await FlutterLauncherIcons.changeLauncherIcon(
+  //       iconName: iconName,
+  //       androidName: 'mipmap',
+  //       iosName: 'Assets.xcassets/AppIcon.appiconset',
+  //     );
+  //     print('Ícone do aplicativo alterado para: $iconName');
+  //   } catch (e) {
+  //     print('Erro ao alterar o ícone do aplicativo: $e');
+  //   }
+  // }
 }

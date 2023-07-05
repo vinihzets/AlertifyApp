@@ -6,6 +6,7 @@ import 'package:alertifyapp/features/home/presentation/ui/home_view_loading_stat
 import 'package:alertifyapp/features/home/presentation/ui/home_view_stable_state.dart';
 import 'package:alertifyapp/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dynamic_icon/flutter_dynamic_icon.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../../core/components/bloc_screen_builder.dart';
